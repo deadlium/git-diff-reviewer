@@ -1,0 +1,22 @@
+# Local prompts & specifications (local only)
+master-promt.md
+master-prompt.md
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node / package artifacts
+node_modules/
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local agent & scratch files
+scratch/
+*.local.*
+.env
+.env.*
