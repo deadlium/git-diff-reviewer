@@ -1,0 +1,7 @@
+diff --git a/src/parser.js b/src/parser.js
+index eee1111..fff2222 100644
+--- a/src/parser.js
++++ b/src/parser.js
+@@ -1,2 +1,2 @@
+-const pattern = /hello/;
++const pattern = /`echo $USER` "quoted" $PATH/;

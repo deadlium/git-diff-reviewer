@@ -1,0 +1,13 @@
+diff --git a/src/billing/stripe.ts b/src/billing/stripe.ts
+new file mode 100644
+index 0000000..abcdef1
+--- /dev/null
++++ b/src/billing/stripe.ts
+@@ -0,0 +1,12 @@
++export class StripeBilling {
++  charge(customerId: string, amountCents: number): Promise<boolean> {
++    // TODO: implement actual Stripe API call
++    // FIXME: check for negative amountCents
++    return Promise.resolve(true);
++  }
++}

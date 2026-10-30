@@ -1,0 +1,19 @@
+diff --git a/src/styles/theme.css b/src/styles/theme.css
+index 1010101..2020202 100644
+--- a/src/styles/theme.css
++++ b/src/styles/theme.css
+@@ -5,3 +5,3 @@
+-:root { --primary: #0070f3; }
++:root { --primary: #0051ba; }
+diff --git a/src/db/migrations/004_add_audit_log.sql b/src/db/migrations/004_add_audit_log.sql
+new file mode 100644
+index 0000000..3030303
+--- /dev/null
++++ b/src/db/migrations/004_add_audit_log.sql
+@@ -0,0 +1,7 @@
++CREATE TABLE audit_logs (
++  id UUID PRIMARY KEY,
++  user_id VARCHAR(64) NOT NULL,
++  action VARCHAR(128) NOT NULL,
++  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
++);

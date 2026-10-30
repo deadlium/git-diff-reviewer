@@ -1,0 +1,35 @@
+name: Auto-Promote Build to Master
+
+on:
+  workflow_run:
+    workflows: ["CI & Skill Quality Gate"]
+    branches:
+      - build
+    types:
+      - completed
+
+jobs:
+  promote-to-master:
+    name: Promote Build to Master
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git Identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync and Promote build to master
+        run: |
+          git fetch origin master:master build:build
+          git checkout master
+          git merge --ff-only build || git merge -m "chore(release): auto-promote build to master [skip ci]" build
+          git push origin master

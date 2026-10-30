@@ -1,0 +1,8 @@
+diff --git a/src/payment.js b/src/payment.js
+index 1111111..2222222 100644
+--- a/src/payment.js
++++ b/src/payment.js
+@@ -5,2 +5,4 @@ function processStripePayment(charge) {
++  // TODO: implement stripe webhook handling and refund checks
++  throw new Error("Not implemented yet");
+ }
