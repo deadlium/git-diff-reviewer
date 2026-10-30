@@ -1,0 +1,8 @@
+diff --git a/docs/roadmap.md b/docs/roadmap.md
+new file mode 100644
+index 0000000..9999999
+--- /dev/null
++++ b/docs/roadmap.md
+@@ -0,0 +1,5 @@
++# Roadmap
++We have added distributed clustering, multi-region failover, and automatic replication.

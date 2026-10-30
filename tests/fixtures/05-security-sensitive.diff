@@ -1,0 +1,12 @@
+diff --git a/src/db/user-repository.ts b/src/db/user-repository.ts
+index 99aabbc..1122334 100644
+--- a/src/db/user-repository.ts
++++ b/src/db/user-repository.ts
+@@ -14,5 +14,5 @@ export class UserRepository {
+   async findByUsername(username: string): Promise<User | null> {
+-    const query = `SELECT * FROM users WHERE username = '${username}'`;
+-    return this.db.raw(query);
++    const query = 'SELECT * FROM users WHERE username = $1';
++    return this.db.query(query, [username]);
+   }
+ }

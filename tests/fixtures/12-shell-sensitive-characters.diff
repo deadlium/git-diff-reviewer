@@ -1,0 +1,9 @@
+diff --git a/src/cli/runner.sh b/src/cli/runner.sh
+index 9999999..aaaaaaa 100644
+--- a/src/cli/runner.sh
++++ b/src/cli/runner.sh
+@@ -3,3 +3,3 @@
+-echo "Starting process..."
+-python -c "print('Done')"
++echo "Processing $APP_ENV with `hostname`..."
++python -c "print(\"Output: $VAR\")"

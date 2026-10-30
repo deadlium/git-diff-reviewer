@@ -1,0 +1,27 @@
+diff --git a/src/notifications/slack.ts b/src/notifications/slack.ts
+new file mode 100644
+index 0000000..aabbcc1
+--- /dev/null
++++ b/src/notifications/slack.ts
+@@ -0,0 +1,14 @@
++export async function sendSlackAlert(webhookUrl: string, message: string): Promise<void> {
++  await fetch(webhookUrl, {
++    method: 'POST',
++    headers: { 'Content-Type': 'application/json' },
++    body: JSON.stringify({ text: message }),
++  });
++}
+diff --git a/tests/notifications/slack.test.ts b/tests/notifications/slack.test.ts
+new file mode 100644
+index 0000000..aabbcc2
+--- /dev/null
++++ b/tests/notifications/slack.test.ts
+@@ -0,0 +1,12 @@
++import { sendSlackAlert } from '../../src/notifications/slack';
++
++describe('sendSlackAlert', () => {
++  it('should post payload to webhookUrl', async () => {
++    // mock test implementation
++  });
++});
++

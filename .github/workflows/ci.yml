@@ -1,0 +1,41 @@
+name: CI & Skill Quality Gate
+
+on:
+  push:
+    branches:
+      - master
+      - build
+      - "feat/**"
+      - "fix/**"
+      - "docs/**"
+  pull_request:
+    branches:
+      - build
+      - master
+
+jobs:
+  validate-skill:
+    name: Validate Skill & Test Scenarios
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Skill Validation Suite
+        run: |
+          chmod +x ./scripts/validate-skill.sh
+          ./scripts/validate-skill.sh
+
+      - name: Security & Secret Leak Scan
+        run: |
+          # Verify no leaked credentials or tokens exist in code/markdown
+          if grep -rE "(AKIA[0-9A-Z]{16}|ghp_[0-9a-zA-Z]{36}|-----BEGIN RSA PRIVATE KEY-----)" .              --exclude-dir=".git" --exclude-dir="node_modules" --exclude="validate-skill.sh" --exclude="ci.yml"; then
+            echo "Security Alert: Leaked credentials detected!"
+            exit 1
+          fi
+          echo "Security scan clean."

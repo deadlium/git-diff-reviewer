@@ -1,0 +1,43 @@
+diff --git a/src/auth/jwt.service.ts b/src/auth/jwt.service.ts
+new file mode 100644
+index 0000000..f1a2b3c
+--- /dev/null
++++ b/src/auth/jwt.service.ts
+@@ -0,0 +1,24 @@
++import jwt from 'jsonwebtoken';
++
++export class JwtService {
++  constructor(private readonly secret: string) {}
++
++  sign(payload: object, expiresIn: string = '1h'): string {
++    return jwt.sign(payload, this.secret, { expiresIn });
++  }
++
++  verify<T>(token: string): T {
++    return jwt.verify(token, this.secret) as T;
++  }
++}
+diff --git a/src/auth/middleware.ts b/src/auth/middleware.ts
+new file mode 100644
+index 0000000..c3b2a1f
+--- /dev/null
++++ b/src/auth/middleware.ts
+@@ -0,0 +1,18 @@
++import { Request, Response, NextFunction } from 'express';
++import { JwtService } from './jwt.service';
++
++export function authMiddleware(jwtService: JwtService) {
++  return (req: Request, res: Response, next: NextFunction) => {
++    const authHeader = req.headers.authorization;
++    if (!authHeader?.startsWith('Bearer ')) {
++      return res.status(401).json({ error: 'Unauthorized' });
++    }
++    try {
++      const token = authHeader.substring(7);
++      (req as any).user = jwtService.verify(token);
++      next();
++    } catch {
++      return res.status(401).json({ error: 'Invalid token' });
++    }
++  };
++}

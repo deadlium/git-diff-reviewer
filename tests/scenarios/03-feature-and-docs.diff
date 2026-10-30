@@ -1,0 +1,17 @@
+diff --git a/README.md b/README.md
+index 1234567..89abcde 100644
+--- a/README.md
++++ b/README.md
+@@ -20,2 +20,4 @@
++### Webhook Support
++Send POST requests to `/api/webhooks` with HMAC-SHA256 signature in `X-Signature`.
+diff --git a/src/webhooks.js b/src/webhooks.js
+new file mode 100644
+index 0000000..f987654
+--- /dev/null
++++ b/src/webhooks.js
+@@ -0,0 +1,8 @@
++function verifyWebhook(payload, signature, secret) {
++  return crypto.createHmac("sha256", secret).update(payload).digest("hex") === signature;
++}
++module.exports = { verifyWebhook };

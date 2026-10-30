@@ -1,0 +1,14 @@
+diff --git a/docs/roadmap.md b/docs/roadmap.md
+new file mode 100644
+index 0000000..778899a
+--- /dev/null
++++ b/docs/roadmap.md
+@@ -0,0 +1,10 @@
++# Q3 Roadmap
++
++## Multi-Region Replication
++We plan to introduce automated multi-region active-active database failover.
++
++## Webhook Support
++Developers will be able to subscribe to event hooks.
++

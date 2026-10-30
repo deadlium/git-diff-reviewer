@@ -1,0 +1,16 @@
+diff --git a/src/core/engine.js b/src/core/engine.js
+index 1000000..2000000 100644
+--- a/src/core/engine.js
++++ b/src/core/engine.js
+@@ -1,5 +1,15 @@
+ class Engine {
++  start() { this.active = true; }
++  stop() { this.active = false; }
+ }
+diff --git a/src/core/config.js b/src/core/config.js
+new file mode 100644
+index 0000000..3000000
+--- /dev/null
++++ b/src/core/config.js
+@@ -0,0 +1,3 @@
++module.exports = { timeout: 5000 };

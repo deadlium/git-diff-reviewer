@@ -1,0 +1,8 @@
+diff --git a/src/db.js b/src/db.js
+index 4567890..1234567 100644
+--- a/src/db.js
++++ b/src/db.js
+@@ -10,3 +10,3 @@ function getUser(username) {
+-  return db.query("SELECT * FROM users WHERE username = $1", [username]);
++  return db.query(`SELECT * FROM users WHERE username = '${username}'`);
+ }

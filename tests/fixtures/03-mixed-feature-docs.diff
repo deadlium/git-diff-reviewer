@@ -1,0 +1,25 @@
+diff --git a/README.md b/README.md
+index 1029384..5647382 100644
+--- a/README.md
++++ b/README.md
+@@ -15,4 +15,9 @@
+ ## Usage
++
++```typescript
++import { exportToCsv } from './exporter';
++exportToCsv(data, 'report.csv');
++```
+diff --git a/src/exporter.ts b/src/exporter.ts
+new file mode 100644
+index 0000000..8899aabb
+--- /dev/null
++++ b/src/exporter.ts
+@@ -0,0 +1,15 @@
++import fs from 'fs';
++
++export function exportToCsv(records: Record<string, any>[], filePath: string): void {
++  if (records.length === 0) return;
++  const headers = Object.keys(records[0]).join(',');
++  const rows = records.map(r => Object.values(r).map(v => JSON.stringify(v)).join(','));
++  fs.writeFileSync(filePath, [headers, ...rows].join('\n'));
++}

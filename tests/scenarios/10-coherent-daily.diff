@@ -1,0 +1,16 @@
+diff --git a/src/metrics.js b/src/metrics.js
+index aaaaaaa..bbbbbbb 100644
+--- a/src/metrics.js
++++ b/src/metrics.js
+@@ -1,3 +1,5 @@
+ const prometheus = require("prom-client");
++const httpRequestCounter = new prometheus.Counter({ name: "http_requests_total", help: "Total HTTP requests" });
++module.exports = { httpRequestCounter };
+diff --git a/tests/metrics.test.js b/tests/metrics.test.js
+new file mode 100644
+index 0000000..ccccccc
+--- /dev/null
++++ b/tests/metrics.test.js
+@@ -0,0 +1,4 @@
++const { httpRequestCounter } = require("../src/metrics");
++test("counter initialized", () => { expect(httpRequestCounter).toBeDefined(); });
