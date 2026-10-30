@@ -1,0 +1,13 @@
+diff --git a/src/cache/lru.ts b/src/cache/lru.ts
+index e69de29..b123456 100644
+--- a/src/cache/lru.ts
++++ b/src/cache/lru.ts
+@@ -42,7 +42,7 @@ export class LRUCache<K, V> {
+     if (this.map.has(key)) {
+       const node = this.map.get(key)!;
+       node.value = value;
+-      this.moveToHead(node);
++      this.detach(node);
++      this.attachToHead(node);
+       return;
+     }

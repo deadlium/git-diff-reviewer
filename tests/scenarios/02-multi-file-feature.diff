@@ -1,0 +1,19 @@
+diff --git a/src/auth/jwt.js b/src/auth/jwt.js
+new file mode 100644
+index 0000000..83bfa12
+--- /dev/null
++++ b/src/auth/jwt.js
+@@ -0,0 +1,12 @@
++const jwt = require("jsonwebtoken");
++function signToken(payload, secret) {
++  return jwt.sign(payload, secret, { expiresIn: "1h" });
++}
++module.exports = { signToken };
+diff --git a/src/routes/auth.js b/src/routes/auth.js
+index 11aa22b..33cc44d 100644
+--- a/src/routes/auth.js
++++ b/src/routes/auth.js
+@@ -5,2 +5,4 @@ router.post("/login", (req, res) => {
++  const token = signToken({ id: user.id }, process.env.JWT_SECRET);
++  res.json({ token });
+ });

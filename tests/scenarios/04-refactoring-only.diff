@@ -1,0 +1,11 @@
+diff --git a/src/utils.js b/src/utils.js
+index abc1234..def5678 100644
+--- a/src/utils.js
++++ b/src/utils.js
+@@ -1,5 +1,2 @@
+-function toUpper(str) {
+-  return str.toUpperCase();
+-}
+-module.exports = { toUpper };
++const toUpper = (str) => str.toUpperCase();
++module.exports = { toUpper };

@@ -1,0 +1,24 @@
+diff --git a/config/default.yaml b/config/default.yaml
+index 1111111..2222222 100644
+--- a/config/default.yaml
++++ b/config/default.yaml
+@@ -5,3 +5,5 @@ server:
+   port: 8080
++  cors:
++    enabled: true
+diff --git a/src/api/routes.ts b/src/api/routes.ts
+index 3333333..4444444 100644
+--- a/src/api/routes.ts
++++ b/src/api/routes.ts
+@@ -10,3 +10,4 @@ router.get('/health', (req, res) => res.json({ status: 'ok' }));
++router.get('/metrics', metricsHandler);
+diff --git a/tests/api.test.ts b/tests/api.test.ts
+index 5555555..6666666 100644
+--- a/tests/api.test.ts
++++ b/tests/api.test.ts
+@@ -20,2 +20,6 @@ describe('API routes', () => {
++  it('should return metrics', async () => {
++    const res = await request(app).get('/metrics');
++    expect(res.status).toBe(200);
++  });
+ });

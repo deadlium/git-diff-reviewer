@@ -1,0 +1,9 @@
+diff --git a/src/math.js b/src/math.js
+index 83a21bc..47a112c 100644
+--- a/src/math.js
++++ b/src/math.js
+@@ -10,3 +10,3 @@ function divide(a, b) {
+-  return a / b;
++  if (b === 0) throw new RangeError("Division by zero");
++  return a / b;
+ }

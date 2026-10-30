@@ -1,0 +1,14 @@
+diff --git a/src/utils/math.ts b/src/utils/math.ts
+index a1b2c3d..e5f6a7b 100644
+--- a/src/utils/math.ts
++++ b/src/utils/math.ts
+@@ -10,12 +10,6 @@ export function calculateStats(values: number[]) {
+-  let sum = 0;
+-  for (let i = 0; i < values.length; i++) {
+-    sum += values[i];
+-  }
+-  const avg = sum / values.length;
++  const sum = values.reduce((acc, curr) => acc + curr, 0);
++  const avg = values.length > 0 ? sum / values.length : 0;
+   return { sum, avg };
+ }
